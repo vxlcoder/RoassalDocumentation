@@ -17,9 +17,9 @@ Consider the following script:
 x := -3.14 to: 3.14 count: 100.
 y := x sin.
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSLinePlot new x: x y: y.
-c addPlot: p.
+c add: p.
 
 c
 ```
@@ -29,7 +29,7 @@ The result of the script is given by the figure:
 
 We will now review the script line by line. The first two lines define the data, expressed with the two variables `x` and `y`, we wish to visualize. Remember that the message `to:count:` defined a collection of 100 numerical values, ranging from `-3.14` to `3.14`.
 
-The class `RSChart` is a container of plots. We add a new plot called `RSLinePlot` to the chart. The script ends with the value `c`, which visualizes the chart thanks to the Pharo inspector framework.
+The class `RSCompositeChart` is a container of plots. We add a new plot called `RSLinePlot` to the chart. The script ends with the value `c`, which visualizes the chart thanks to the Pharo inspector framework.
 
 Some decorations can be added to our script to annotate the graphics. Consider:
 
@@ -37,9 +37,9 @@ Some decorations can be added to our script to annotate the graphics. Consider:
 x := -3.14 to: 3.14 count: 100.
 y := x sin.
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSLinePlot new x: x y: y.
-c addPlot: p.
+c add: p.
 
 c title: 'Sine function'.
 c xlabel: 'X axis'.
@@ -63,9 +63,9 @@ The previous script added the horizontal and vertical ticks, which produces a ra
 x := -3.14 to: 3.14 count: 100.
 y := x sin.
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSLinePlot new x: x y: y.
-c addPlot: p.
+c add: p.
 
 c title: 'Sine function'.
 c xlabel: 'X axis'.
@@ -85,9 +85,9 @@ The X axis ranges from `-3.14` to `3.14`, however intermediary ticks have uneces
 x := -3.14 to: 3.14 count: 100.
 y := x sin.
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSLinePlot new x: x y: y.
-c addPlot: p.
+c add: p.
 
 c title: 'Sine function'.
 c xlabel: 'X axis'.
@@ -110,12 +110,12 @@ Several plots may be added to a chart object. Consider:
 ```Smalltalk
 x := -3.14 to: 3.14 count: 100.
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSLinePlot new x: x y: x sin.
-c addPlot: p.
+c add: p.
 
 p := RSLinePlot new x: x y: x cos.
-c addPlot: p.
+c add: p.
 
 c title: 'Sine and Cosine functions'.
 c xlabel: 'X axis'.
@@ -136,13 +136,13 @@ Colors may be set to each plot. Consider the following example:
 ```Smalltalk
 x := -3.14 to: 3.14 count: 100.
 
-c := RSChart new.
+c := RSCompositeChart new.
 1 to: 10 do: [ :att |
 	p := RSLinePlot new x: x y: x sin / att.
 	att = 1
 		ifTrue: [ p color: Color red ]
 		ifFalse: [ p color: (Color gray: att / 10) ].
-	c addPlot: p.
+	c add: p.
 ].
 
 
@@ -167,9 +167,9 @@ Plots can be combined in various different ways. The following example combine a
 ```Smalltalk
 x := -3.14 to: 3.14 count: 10.
 
-c := RSChart new.
-c addPlot: (RSBarPlot new x: x y: x cos).
-c addPlot: (RSLinePlot new x: x y: x sin).
+c := RSCompositeChart new.
+c add: (RSBarPlot new x: x y: x cos).
+c add: (RSLinePlot new x: x y: x sin).
 
 c title: 'Sine and Cosine functions'.
 c xlabel: 'X axis'.
@@ -198,10 +198,10 @@ r := Random seed: 42.
 	z add: i + (r nextInteger: 10).
 ].
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSScatterPlot new x: x y: y.
 p color: Color blue translucent.
-c addPlot: p.
+c add: p.
 
 c addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3).
 c addDecoration: RSVerticalTick new.
@@ -226,10 +226,10 @@ r := Random seed: 42.
 	z add: i + (r nextInteger: 10).
 ].
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSScatterPlot new x: x y: y.
 
-c addPlot: p.
+c add: p.
 
 c addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3).
 c addDecoration: RSVerticalTick new.
@@ -297,10 +297,10 @@ columnNames := dataFrame columnNames allButFirst: 4.
 indexX := (1 to: nbColumns - 4) reversed negated.
 
 "Build the visualization"
-chart := RSChart new.
+chart := RSCompositeChart new.
 chart extent: 400 @ 400.
 chart colors: color.
-allDataSum do: [ :data | chart addPlot:(RSLinePlot new x: indexX y: data) ].
+allDataSum do: [ :data | chart add:(RSLinePlot new x: indexX y: data) ].
 chart xlabel: 'Days ago'.
 chart ylabel: 'Contaminated'.
 chart title: 'Coronavirus confirmed cases'.

@@ -37,8 +37,8 @@ values := #(40 23 12 15 63).
 You can visualize the value contained in `values` using:
 
 ```
-c := RSChart new.
-c addPlot: (RSLinePlot new y: values).
+c := RSCompositeChart new.
+c add: (RSLinePlot new y: values).
 c addDecoration: (RSVerticalTick new).
 c addDecoration: (RSHorizontalTick new).
 c

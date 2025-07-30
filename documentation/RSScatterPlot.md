@@ -4,7 +4,7 @@
 
 *Responsibility*: create shapes that represent a scatter plot.
 
-*Collaborators*: used by `RSChart`
+*Collaborators*: used by `RSCompositeChart`
 
 *Variables*:
 - `processBlock`: is either `nil` or refer to a one argument block. This block is used to particularize the shapes.
@@ -21,7 +21,7 @@ r := Random seed: 42.
 	z add: i + (r nextInt: 10).
 ].
 
-c := RSChart new.
+c := RSCompositeChart new.
 p := RSScatterPlot new x: x y: y.
 p color: Color blue translucent.
 p processBlock: [ :shapes | 
@@ -36,7 +36,7 @@ p processBlock: [ :shapes |
 			normalize: #yourself.
 			
 			 ].
-c addPlot: p.
+c add: p.
  
 c addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3).
 c addDecoration: RSVerticalTick new.

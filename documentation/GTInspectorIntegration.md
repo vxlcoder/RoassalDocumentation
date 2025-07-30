@@ -38,10 +38,10 @@ Open a system browser on the class `OrderedCollection` and define the following 
 ```Smalltalk
 OrderedCollection>>visualizeListOfNumbers
 	| c d |
-	c := RSChart new.
+	c := RSCompositeChart new.
 	d := RSLinePlot new.
 	d y: self.
-	c addPlot: d.
+	c add: d.
 	c build.
 	^ c canvas
 ```
@@ -70,10 +70,10 @@ Our visualization can be improved by adding a title ticks:
 ```Smalltalk
 visualizeListOfNumbers
 	| c d |
-	c := RSChart new.
+	c := RSCompositeChart new.
 	d := RSLinePlot new.
 	d y: self.
-	c addPlot: d.
+	c add: d.
 	c title: 'Visualizing numbers'.
 	c addDecoration: RSVerticalTick new.
 	c addDecoration: RSHorizontalTick new.
@@ -90,10 +90,10 @@ If you wish to have the value 0 included, then you can use the method `mustInclu
 ```Smalltalk
 visualizeListOfNumbers
 	| c d |
-	c := RSChart new.
+	c := RSCompositeChart new.
 	d := RSLinePlot new.
 	d y: self.
-	c addPlot: d.
+	c add: d.
 	c title: 'Visualizing numbers'.
 	c addDecoration: RSVerticalTick new.
 	c addDecoration: RSHorizontalTick new.
@@ -131,8 +131,8 @@ OrderedCollection>>visualizeListOfPoints
 	| c x y |
 	x := self collect: [ :p | p x ].
 	y := self collect: [ :p | p y ].
-	c := RSChart new.
-	c addPlot: (RSScatterPlot new x: x y: y).
+	c := RSCompositeChart new.
+	c add: (RSScatterPlot new x: x y: y).
 	c title: 'Visualizing numbers'.
 	c addDecoration: RSVerticalTick new.
 	c addDecoration: RSHorizontalTick new.

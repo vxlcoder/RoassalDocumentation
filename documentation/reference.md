@@ -8,7 +8,7 @@ The key classes of Roassal are:
 - [RSAthensRenderer](RSAthensRenderer.md)
 - [RSCamera](RSCamera.md)
 - [RSCanvas](RSCanvas.md)
-- [RSChart](RSChart.md)
+- [RSCompositeChart](RSCompositeChart.md)
 - [RSEvent](RSEvent.md)
 - [RSGroup](RSGroup.md)
 - [RSLocation](RSLocation.md)
